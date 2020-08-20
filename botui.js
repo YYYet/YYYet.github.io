@@ -65,27 +65,27 @@ function bot_ui_ini() {
         secondpart = function () {
             botui.message.add({
                 delay: 1500,
-                content: "就读于..你心里！"
+                content: "然后.."
             }).then(function () {
                 botui.message.add({
                     delay: 1500,
-                    content: "是在移动互联网学院软件工程的秃头猿"
+                    content: "天气这么热冷战吗冷战吗"
                 }).then(function () {
                     botui.message.add({
                         delay: 1200,
-                        content: "体会到了编程之美 嘻嘻"
+                        content: "冷战吗冷战吗"
                     }).then(function () {
                         botui.message.add({
                             delay: 1500,
-                            content: "略知 Spring,Java,Android,Python,略知 linux,略知 HTML/CSS/JavaScript"
+                            content: "我可以好几天不理你"
                         }).then(function () {
                             botui.message.add({
                                 delay: 1500,
-                                content: "专业方向 机器学习"
+                                content: "只要你敢生气"
                             }).then(function () {
                                 botui.message.add({
                                     delay: 1800,
-                                    content: "喜欢看动画片和看动画片"
+                                    content: "我就马上跪着道歉"
                                 }).then(function () {
                                     botui.action.button({
                                         delay: 1100,
@@ -143,7 +143,7 @@ function bot_ui_ini() {
         fifthpart = function () {
             botui.message.add({
                 delay: 1E3,
-                content: "emmmm,因为喜欢陈思思丫"
+                content: "emmmm,因为喜欢你呀"
             }).then(function () {
                 botui.message.add({
                     delay: 1600,
