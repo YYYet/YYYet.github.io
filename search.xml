@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title>shiro+jwt</title>
+      <link href="/2020/08/28/jwt+shiro/"/>
+      <url>/2020/08/28/jwt+shiro/</url>
+      
+        <content type="html"><![CDATA[<p>待更</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> shiro jwt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>springboot整合shiro</title>
+      <link href="/2020/08/28/jwt/"/>
+      <url>/2020/08/28/jwt/</url>
+      
+        <content type="html"><![CDATA[<p>待更</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring Boot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>springboot整合jwt</title>
+      <link href="/2020/08/28/shiro/"/>
+      <url>/2020/08/28/shiro/</url>
+      
+        <content type="html"><![CDATA[<p>待更</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Spring Boot </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vue-element-admin</title>
+      <link href="/2020/08/28/vue-eletment-admin/"/>
+      <url>/2020/08/28/vue-eletment-admin/</url>
+      
+        <content type="html"><![CDATA[<h1 id="vue-element-admin"><a href="#vue-element-admin" class="headerlink" title="vue-element-admin"></a><a href="https://panjiachen.gitee.io/vue-element-admin-site/zh/">vue-element-admin</a></h1><h1 id="登录成功-但发生请求但-Shiro-判断为未登录"><a href="#登录成功-但发生请求但-Shiro-判断为未登录" class="headerlink" title="登录成功 但发生请求但 Shiro 判断为未登录"></a>登录成功 但发生请求但 Shiro 判断为未登录</h1><p>前端使用vue-element-admin  </p><p>后端采用spring shiro jwt</p><p>前端登录成功返回token，但当通过shiro的权限判断时，</p><p>被factoryBean.setLoginUrl(“/Service/unlogin”); 重定向到未登录。</p><p>页面跳转时应该请求头带上 cookie</p><p>vue-element-admin  默认不发送cookie </p><p>找到request.js并</p><p>启动 withCredentials: true  即可</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> service = axios.create(&#123;<br>  baseURL: process.env.VUE_APP_BASE_API, <span class="hljs-comment">// url = base url + request url</span><br>  withCredentials: <span class="hljs-literal">true</span>, <span class="hljs-comment">// send cookies when cross-domain requests</span><br>  timeout: <span class="hljs-number">5000</span> <span class="hljs-comment">// request timeout</span><br>&#125;)<br></code></pre></td></tr></table></figure><hr><h1 id="响应中的“Access-Control-Allow-origin”头的值不能是通配符“-”"><a href="#响应中的“Access-Control-Allow-origin”头的值不能是通配符“-”" class="headerlink" title="响应中的“Access Control Allow origin”头的值不能是通配符“*”"></a>响应中的“Access Control Allow origin”头的值不能是通配符“*”</h1><p>vue报错信息之跨域当请求的凭据模式为“include”时，响应中的“Access Control Allow origin”头的值不能是通配符“*”</p><p>CORS策略已阻止从源位置“<a href="http://localhost:3000/api/index/getNotice%E2%80%9D%E8%AE%BF%E9%97%AEXMLHttpRequest:http://localhost:8080%E2%80%9D%EF%BC%9A%E5%BD%93%E8%AF%B7%E6%B1%82%E7%9A%84%E5%87%AD%E6%8D%AE%E6%A8%A1%E5%BC%8F%E4%B8%BA%E2%80%9Cinclude%E2%80%9D%E6%97%B6%EF%BC%8C%E5%93%8D%E5%BA%94%E4%B8%AD%E7%9A%84%E2%80%9CAccess">http://localhost:3000/api/index/getNotice”访问XMLHttpRequest:http://localhost:8080”：当请求的凭据模式为“include”时，响应中的“Access</a> Control Allow origin”头的值不能是通配符“*”。XMLHttpRequest启动的请求的凭据模式由withCredentials属性控制。</p><p>这样的结果可能是你在前端开启了withCredentials影响的，这时后台要添加</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plain">response.setHeader(&quot;Access-Control-Allow-Origin&quot;,&quot;Origin地址 如 http:&#x2F;&#x2F;localhost:9528&quot;);<br>response.setHeader(&quot;Access-Control-Allow-Credentials&quot;,&quot;true&quot;);<br></code></pre></td></tr></table></figure><hr><h1 id="端口跨域方案1-前端解决"><a href="#端口跨域方案1-前端解决" class="headerlink" title="端口跨域方案1   前端解决"></a>端口跨域方案1   前端解决</h1><p>vue.config.js中添加代理</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">proxy: &#123;<br>  [process.env.VUE_APP_BASE_API]: &#123;<br>    target: <span class="hljs-string">&#x27;http://localhost:8082&#x27;</span>, <span class="hljs-comment">// 要请求的地址</span><br>    ws: <span class="hljs-literal">true</span>,<br>    changeOrigin: <span class="hljs-literal">true</span>,<br>    pathRewrite: &#123;<br>      [<span class="hljs-string">&#x27;^&#x27;</span>+process.env.VUE_APP_BASE_API]: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>.env.development中 设置VUE_APP_BASE_API为空</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">VUE_APP_BASE_API = <span class="hljs-string">&#x27;&#x27;</span><br></code></pre></td></tr></table></figure><hr><h1 id="端口跨域2-后端解决"><a href="#端口跨域2-后端解决" class="headerlink" title="端口跨域2 后端解决"></a>端口跨域2 后端解决</h1><h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>springboot中</p><p>添加注解@CrossOrigin</p><h2 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h2><p>WEBMvcConfigurer扩展类中</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> FilterRegistrationBean <span class="hljs-title">filterRegistrationBean</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-comment">// 对响应头进行CORS授权</span><br>    MyCorsRegistration corsRegistration = <span class="hljs-keyword">new</span> MyCorsRegistration(<span class="hljs-string">&quot;/**&quot;</span>);<br>    corsRegistration.allowedOrigins(<span class="hljs-string">&quot;*&quot;</span>)<br>            .allowedMethods(HttpMethod.GET.name(), HttpMethod.HEAD.name(), HttpMethod.POST.name(),<br>                    HttpMethod.PUT.name(), HttpMethod.OPTIONS.name())<br>            .allowedHeaders(<span class="hljs-string">&quot;Accept&quot;</span>, <span class="hljs-string">&quot;Origin&quot;</span>, <span class="hljs-string">&quot;X-Requested-With&quot;</span>, <span class="hljs-string">&quot;Content-Type&quot;</span>,<br>                    <span class="hljs-string">&quot;Last-Modified&quot;</span>, <span class="hljs-string">&quot;device&quot;</span>, <span class="hljs-string">&quot;token&quot;</span>)<br>            .exposedHeaders(HttpHeaders.SET_COOKIE)<br>            .allowCredentials(<span class="hljs-keyword">true</span>)<br>            .maxAge(<span class="hljs-number">3600</span>);<br><br>    <span class="hljs-comment">// 注册CORS过滤器</span><br>    UrlBasedCorsConfigurationSource configurationSource = <span class="hljs-keyword">new</span> UrlBasedCorsConfigurationSource();<br>    configurationSource.registerCorsConfiguration(<span class="hljs-string">&quot;/**&quot;</span>, corsRegistration.getCorsConfiguration());<br>    CorsFilter corsFilter = <span class="hljs-keyword">new</span> CorsFilter(configurationSource);<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FilterRegistrationBean(corsFilter);<br>&#125;<br><br></code></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs plain">import org.springframework.web.cors.CorsConfiguration;<br>import org.springframework.web.servlet.config.annotation.CorsRegistration;<br><br>&#x2F;**<br> * &lt;p&gt;<br> * kuayu<br> * &lt;&#x2F;p&gt;<br> *<br> * @author 等什么柠檬君<br> * @since 2020&#x2F;8&#x2F;28<br> *&#x2F;<br>public class MyCorsRegistration extends CorsRegistration &#123;<br><br><br><br>    public MyCorsRegistration(String pathPattern) &#123;<br>        super(pathPattern);<br>    &#125;<br><br><br>    @Override<br>    public CorsConfiguration getCorsConfiguration() &#123;<br>        return super.getCorsConfiguration();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="jwt拦截器"><a href="#jwt拦截器" class="headerlink" title="jwt拦截器"></a>jwt拦截器</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">preHandle中添加<br></code></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java">response.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Headers&quot;</span>, <span class="hljs-string">&quot;*&quot;</span>);<br>response.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Origin&quot;</span>,<span class="hljs-string">&quot;*&quot;</span>);<br>response.setHeader(<span class="hljs-string">&quot;Access-Control-Allow-Credentials&quot;</span>,<span class="hljs-string">&quot;true&quot;</span>);<br>response.setCharacterEncoding(<span class="hljs-string">&quot;UTF-8&quot;</span>);<br>response.setContentType(<span class="hljs-string">&quot;application/json&quot;</span>);<br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> web </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>乐心步数助手服务端</title>
       <link href="/2020/08/22/%E4%B9%90%E5%BF%83%E6%AD%A5%E6%95%B0%E5%8A%A9%E6%89%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF/"/>
       <url>/2020/08/22/%E4%B9%90%E5%BF%83%E6%AD%A5%E6%95%B0%E5%8A%A9%E6%89%8B%E6%9C%8D%E5%8A%A1%E7%AB%AF/</url>
