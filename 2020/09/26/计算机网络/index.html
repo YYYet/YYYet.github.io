@@ -1,0 +1,357 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>计算机网络 | 此间</title><meta name="description" content="[TOC] 第一章课程简介 以五层参考模型为线索，按层共分为6个章节：  概述  物理层  数据链路层  网络层  运输（传输）层  应用层 每一层都围绕它的功能、作用来展开；目的是让同学们了解完整的计算机网络通信过程中，各层所遇到的技术、协议、问题和解决的方法。    建议学习过程中参考课程提供的教学资源，由粗而细，再由细到抽象，思考，并构建、修缮自己的知识框架，融会贯通。   课程主线   计"><meta name="keywords" content="计算机网络"><meta name="author" content="等什么柠檬君"><meta name="copyright" content="等什么柠檬君"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yyyet.github.io/2020/09/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="计算机网络"><meta property="og:url" content="https://yyyet.github.io/2020/09/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"><meta property="og:site_name" content="此间"><meta property="og:description" content="[TOC] 第一章课程简介 以五层参考模型为线索，按层共分为6个章节：  概述  物理层  数据链路层  网络层  运输（传输）层  应用层 每一层都围绕它的功能、作用来展开；目的是让同学们了解完整的计算机网络通信过程中，各层所遇到的技术、协议、问题和解决的方法。    建议学习过程中参考课程提供的教学资源，由粗而细，再由细到抽象，思考，并构建、修缮自己的知识框架，融会贯通。   课程主线   计"><meta property="og:image" content="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200818151148.png"><meta property="article:published_time" content="2020-09-26T10:16:23.923Z"><meta property="article:modified_time" content="2020-09-26T10:17:22.860Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.0.2',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"报告大人，没有发现：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: {"limitCount":250,"languages":{"author":"作者: 等什么柠檬君","link":"链接: ","source":"来源: 此间","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isSidebar: true,
+  postUpdate: '2020-09-26 18:17:22'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.0.2"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/lf.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0"><span class="toc-number">1.</span> <span class="toc-text">第一章</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">课程简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text">计算机网络的必要性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="toc-number">1.2.1.</span> <span class="toc-text">为什么学习计算机网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%90%91%E7%94%A8%E6%88%B7%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">1.2.2.</span> <span class="toc-text">计算机网络向用户提供的最重要的功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%99%E6%9D%90%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">教材参考模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.</span> <span class="toc-text">计算机网络的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-number">1.4.1.</span> <span class="toc-text">互联网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="toc-number">1.4.2.</span> <span class="toc-text">因特网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%87%E7%BB%B4%E7%BD%91"><span class="toc-number">1.4.3.</span> <span class="toc-text">万维网</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%8F%91%E5%B1%95%E7%9A%844%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.5.</span> <span class="toc-text">计算机网络发展的4个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A20%E4%B8%96%E7%BA%AA50%E5%B9%B4%E4%BB%A3%EF%BC%88%E9%9D%A2%E5%90%91%E7%BB%88%E7%AB%AF%E7%9A%84%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-number">1.5.1.</span> <span class="toc-text">第一阶段：20世纪50年代（面向终端的计算机网络）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A20%E4%B8%96%E7%BA%AA60%E5%B9%B4%E4%BB%A3%EF%BC%88%E8%AE%A1%E7%AE%97%E6%9C%BA%E2%80%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%89"><span class="toc-number">1.5.2.</span> <span class="toc-text">第二阶段：20世纪60年代（计算机—计算机网络）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A20%E4%B8%96%E7%BA%AA70%E5%B9%B4%E4%BB%A3%EF%BC%88%E5%BC%80%E6%94%BE%E5%BC%8F%E6%A0%87%E5%87%86%E5%8C%96%E7%BD%91%E7%BB%9C%EF%BC%89ISO-OSI%E2%80%94TCP-IP"><span class="toc-number">1.5.3.</span> <span class="toc-text">第三阶段：20世纪70年代（开放式标准化网络）ISO&#x2F;OSI—TCP&#x2F;IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A20%E4%B8%96%E7%BA%AA90%E5%B9%B4%E4%BB%A3%EF%BC%88%E7%BD%91%E7%BB%9C%E8%AE%A1%E7%AE%97%E6%96%B0%E6%97%B6%E4%BB%A3%EF%BC%89"><span class="toc-number">1.5.4.</span> <span class="toc-text">第四阶段：20世纪90年代（网络计算新时代）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E5%8F%91%E5%B1%95%E7%9A%84%E4%B8%89%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">1.6.</span> <span class="toc-text">因特网发展的三个阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%A5%87%E7%89%B9%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">1.6.1.</span> <span class="toc-text">第一阶段：奇特的起源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9AARPANET%E5%90%91Internet%E7%9A%84%E8%BD%AC%E5%8F%98%EF%BC%881970s%E5%88%9D%E6%9C%9F-1982%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">第二阶段：ARPANET向Internet的转变（1970s初期~ 1982）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%B5%B0%E5%90%91%E6%99%AE%E9%80%9A%E5%85%AC%E4%BC%97"><span class="toc-number">1.6.3.</span> <span class="toc-text">第三阶段：走向普通公众</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%90%86%E8%AE%BA"><span class="toc-number">1.7.</span> <span class="toc-text">计算机网络的基本理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E6%8A%80%E6%9C%AF%E5%92%8C%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.8.</span> <span class="toc-text">计算机网络的网络基本技术和协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.9.</span> <span class="toc-text">网络设备的基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%8A%93%E5%8F%96%E5%92%8C%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.10.</span> <span class="toc-text">报文抓取和分析工具的使用</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200818151148.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">此间</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">计算机网络</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-26T10:16:23.923Z" title="发表于 2020-09-26 18:16:23">2020-09-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-26T10:17:22.860Z" title="更新于 2020-09-26 18:17:22">2020-09-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>[TOC]</p>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="课程简介"><a href="#课程简介" class="headerlink" title="课程简介"></a>课程简介</h2><ul>
+<li><p>以五层参考模型为线索，按层共分为6个章节：</p>
+<ol>
+<li><p>概述</p>
+</li>
+<li><p>物理层</p>
+</li>
+<li><p>数据链路层</p>
+</li>
+<li><p>网络层</p>
+</li>
+<li><p>运输（传输）层</p>
+</li>
+<li><p>应用层</p>
+<p>每一层都围绕它的<strong>功能、作用</strong>来展开；目的是让同学们了解完整的计算机网络通信过程中，各层所遇到的<strong>技术、协议、问题和解决的方法。</strong></p>
+</li>
+</ol>
+</li>
+<li><p>建议学习过程中参考课程提供的教学资源，由粗而细，再由细到抽象，思考，并构建、修缮自己的知识框架，融会贯通。</p>
+</li>
+</ul>
+<p><strong>课程主线</strong></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924173819.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174314.png"></p>
+<h2 id="计算机网络的必要性"><a href="#计算机网络的必要性" class="headerlink" title="计算机网络的必要性"></a>计算机网络的必要性</h2><p>中国的互联网络发展现状</p>
+<p>第45次《中国互联网络发展状况统计报告》<br>截至2020年3月，网民规模突破9亿。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174635.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174649.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174708.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174725.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174733.png"></p>
+<h3 id="为什么学习计算机网络"><a href="#为什么学习计算机网络" class="headerlink" title="为什么学习计算机网络"></a>为什么学习计算机网络</h3><p>网络已经渗透到我们的学习、工作和生活的方方面面</p>
+<ul>
+<li>使用者</li>
+<li>从业人员</li>
+<li>计算机专业必修，考研要求</li>
+</ul>
+<hr>
+<h3 id="计算机网络向用户提供的最重要的功能"><a href="#计算机网络向用户提供的最重要的功能" class="headerlink" title="计算机网络向用户提供的最重要的功能"></a>计算机网络向用户提供的最重要的功能</h3><ul>
+<li>连通性</li>
+<li>资源共享</li>
+</ul>
+<hr>
+<h2 id="教材参考模型"><a href="#教材参考模型" class="headerlink" title="教材参考模型"></a>教材参考模型</h2><p>本教材采用计算机网络五层参考模型来讲授计算机网络各层</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174231.png"></p>
+<hr>
+<h2 id="计算机网络的基本概念"><a href="#计算机网络的基本概念" class="headerlink" title="计算机网络的基本概念"></a>计算机网络的基本概念</h2><p>计算机网络（计算机网络组成——建造计算机网络的基本构件）</p>
+<ul>
+<li>使用单一技术的自主计算机的互联集合。</li>
+<li>单台计算机具有独立自主性</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924174832.png"></p>
+<blockquote>
+<p>广义的网络</p>
+<p>类似事物连接在一起，以提供某些功能的。<br>如：交通网络，自来水管网，排水管网，邮政网络，快递网络。电话网络……</p>
+<p>​     计算机网络是网络的一种</p>
+</blockquote>
+<h3 id="互联网"><a href="#互联网" class="headerlink" title="互联网"></a>互联网</h3><p>互联网（如何建造规模更大的计算机网络）Network of networks</p>
+<ul>
+<li>（internet）——计算机网络的互相联接。</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924175005.png"></p>
+<blockquote>
+<p>疑问1： 互联网是个概念 ？而不是指一个具体的网络？</p>
+</blockquote>
+<h3 id="因特网"><a href="#因特网" class="headerlink" title="因特网"></a>因特网</h3><ul>
+<li>连接在因特网上的计算机都称为**主机(host)**。</li>
+<li>网络把许多计算机连接在一起；因特网则把许多网络连接在一起。 </li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924175209.png"></p>
+<h3 id="万维网"><a href="#万维网" class="headerlink" title="万维网"></a>万维网</h3><p>WWW：World Wide Web，万维网：</p>
+<ol>
+<li>信息资源的网络</li>
+<li>三部分支撑着www的运作<ol>
+<li><strong>资源</strong></li>
+<li><strong>资源标识</strong></li>
+<li><strong>传输协议</strong></li>
+</ol>
+</li>
+</ol>
+<hr>
+<h2 id="计算机网络发展的4个阶段"><a href="#计算机网络发展的4个阶段" class="headerlink" title="计算机网络发展的4个阶段"></a>计算机网络发展的4个阶段</h2><ul>
+<li>面向终端的计算机网络（20世纪50年代初）</li>
+<li>计算机——计算机的网络</li>
+<li>开放式标准化网络</li>
+<li>网络计算新时代</li>
+</ul>
+<h3 id="第一阶段：20世纪50年代（面向终端的计算机网络）"><a href="#第一阶段：20世纪50年代（面向终端的计算机网络）" class="headerlink" title="第一阶段：20世纪50年代（面向终端的计算机网络）"></a>第一阶段：20世纪50年代（面向终端的计算机网络）</h3><p><strong>20世纪50年代初</strong>，由于美国军方的需要，美国半自动地面防空系统（<strong>SAGE</strong>）的研究开始了计算机技术与通信技术相结合的尝试；</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924175701.png"></p>
+<h3 id="第二阶段：20世纪60年代（计算机—计算机网络）"><a href="#第二阶段：20世纪60年代（计算机—计算机网络）" class="headerlink" title="第二阶段：20世纪60年代（计算机—计算机网络）"></a>第二阶段：20世纪60年代（计算机—计算机网络）</h3><p>1969年11月，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BE%8E%E5%9B%BD%E5%9B%BD%E9%98%B2%E9%83%A8">美国国防部</a>高级研究计划管理局（ ARPA 全称： Advanced Research Projects Agency ）开始建立一个命名为ARPAnet的网络，但是只有4个结点，分布在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B4%9B%E6%9D%89%E7%9F%B6">洛杉矶</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A0%E5%88%A9%E7%A6%8F%E5%B0%BC%E4%BA%9A">加利福尼亚</a>州大学洛杉矶分校、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8A%A0%E5%B7%9E%E5%A4%A7%E5%AD%A6">加州大学</a>圣巴巴拉分校、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%AF%E5%9D%A6%E7%A6%8F%E5%A4%A7%E5%AD%A6">斯坦福大学</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%8A%B9%E4%BB%96%E5%A4%A7%E5%AD%A6/5337284">犹他大学</a>四所大学的4台<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%A7%E5%9E%8B%E8%AE%A1%E7%AE%97%E6%9C%BA">大型计算机</a>。</p>
+<blockquote>
+<p>选择这四个结点的一个因素是考虑到不同类型<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%BB%E6%9C%BA">主机</a>联网的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%BC%E5%AE%B9%E6%80%A7">兼容性</a>。对arparnet发展具有重要意义的是<strong>它利用了无线分组交换网与卫星通信网</strong>。通过专门的接口信号<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%84%E7%90%86%E6%9C%BA">处理机</a>(IMP)和专门的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%80%9A%E4%BF%A1%E7%BA%BF%E8%B7%AF">通信线路</a>，相互连接把<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BE%8E%E5%9B%BD">美国</a>的几个军事及研究用电脑<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%BB%E6%9C%BA">主机</a>联接起来。起初是为了便于这些学校之间互相共享资源而开发的。ARPANET采用了包交换机制。当初，ARPAnet只联结4台<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%BB%E6%9C%BA">主机</a>，从军事要求上是置于<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BE%8E%E5%9B%BD%E5%9B%BD%E9%98%B2%E9%83%A8">美国国防部</a>高级机密的保护之下，从技术上它还不具备向外推广的条件。 最初，ARPAnet主要是用于军事研究目的，它主要是基于这样的指导思想：网络必须经受得住故障的考验而维持正常的工作，一旦发生战争，当网络的某一部分因遭受攻击而失去工作能力时，网络的其他部分应能维持正常的通信工作。ARPAnet在技术上的另一个重大贡献是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TCP%2FIP%E5%8D%8F%E8%AE%AE">TCP/IP协议</a>簇的开发和利用。作为Internet的早期<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%AA%A8%E5%B9%B2%E7%BD%91">骨干网</a>，ARPAnet的试验并奠定了Internet存在和发展的基础，较好地解决了异种机<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94">网络互联</a>的一系列理论和技术问题。</p>
+</blockquote>
+<ol>
+<li>终端和中央计算机之间的通信→→计算机之间的通信；</li>
+<li>单台计算机为所有用户服务的模式→→分散异地而又互联的多台主计算机共同完成的模式。</li>
+</ol>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924175903.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924180726.png"></p>
+<p>ARPANET的成功使<strong>计算机网络的概念</strong>发生根本变化 </p>
+<blockquote>
+<ol>
+<li>Internet的前身</li>
+<li>世界上第一个运营的<strong>封包交换网络</strong></li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="第三阶段：20世纪70年代（开放式标准化网络）ISO-OSI—TCP-IP"><a href="#第三阶段：20世纪70年代（开放式标准化网络）ISO-OSI—TCP-IP" class="headerlink" title="第三阶段：20世纪70年代（开放式标准化网络）ISO/OSI—TCP/IP"></a>第三阶段：20世纪70年代（开放式标准化网络）ISO/OSI—TCP/IP</h3><ol>
+<li>国际标准化组织（ISO）成立专门委员会研究网络体系结构与网络协议国际标准化问题；ISO正式制订了开放系统互连参考模型（OSI），制订了一系列的协议标准； </li>
+<li>在1969年ARPAnet的实验性阶段，研究人员就开始了TCP/IP协议雏形的研究；TCP/IP协议的成功促进了Internet的发展，Internet的发展又进一步扩大了TCP/IP协议的影响。</li>
+</ol>
+<hr>
+<h3 id="第四阶段：20世纪90年代（网络计算新时代）"><a href="#第四阶段：20世纪90年代（网络计算新时代）" class="headerlink" title="第四阶段：20世纪90年代（网络计算新时代）"></a>第四阶段：20世纪90年代（网络计算新时代）</h3><ol>
+<li>高速局域网技术发展迅速，Fast Ethernet、Gigabit Ethernet、10Gb/s的Ethernet已开始进入实用阶段；</li>
+<li>基于光纤与IP技术的宽带城域网与宽带接入网技术已成为研究、应用与产业发展的热点问题之一；</li>
+<li>无线网络技术的研究与发展蓬勃展开；</li>
+<li>Internet的广泛应用促进了电子商务、电子政务、远程教育、远程医疗、分布式计算与多媒体网络应用的发展；</li>
+<li>基于Web技术的Internet应用得到高速发展（如搜索引擎应用，P2P应用，播客应用，博客blog应用，即时通信应用，网络电视应用等）。</li>
+</ol>
+<h2 id="因特网发展的三个阶段"><a href="#因特网发展的三个阶段" class="headerlink" title="因特网发展的三个阶段"></a>因特网发展的三个阶段</h2><ol>
+<li>第一阶段：奇特的起源（1955 ~ 1970s初期）</li>
+<li>第二阶段：ARPANET向Internet的转变（1970s初期~ 1982）</li>
+<li>第三阶段：走向普通公众</li>
+</ol>
+<h3 id="第一阶段：奇特的起源"><a href="#第一阶段：奇特的起源" class="headerlink" title="第一阶段：奇特的起源"></a>第一阶段：奇特的起源</h3><ul>
+<li>1958年，ARPA（Advanced Research Projects Agency ，高级计划研究署）成立</li>
+<li>1969年，ARPANet诞生</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924181706.png"></p>
+<h3 id="第二阶段：ARPANET向Internet的转变（1970s初期-1982）"><a href="#第二阶段：ARPANET向Internet的转变（1970s初期-1982）" class="headerlink" title="第二阶段：ARPANET向Internet的转变（1970s初期~ 1982）"></a>第二阶段：ARPANET向Internet的转变（1970s初期~ 1982）</h3><ul>
+<li><p>互联网之父的瑟夫（Vinton.Cerf）、凯恩（Bob Kahn）、柏兰登（Bob Braden）等人一起发明出来了被称为成就了互联网的骨干协议TCP/IP</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924181736.png"></p>
+</li>
+<li><p>1981年，<strong>美国国家科学基金（NSF</strong>）成立计算机科学网络（CSnet），并在<strong>Vinton Cerf</strong> 的建议下，两网互连，互联网正式诞生。</p>
+<ul>
+<li><p>1986 年，NSF 建立了国家科学基金网NSFNET。它是一个三级计算机网络，分为<strong>主干网、地区网和校园网（或企业网）</strong>。</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924182032.png"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924182051.png"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>主要技术特点：TCP/IP协议簇形成。</strong></li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200924181940.png"></p>
+<hr>
+<h3 id="第三阶段：走向普通公众"><a href="#第三阶段：走向普通公众" class="headerlink" title="第三阶段：走向普通公众"></a>第三阶段：走向普通公众</h3><p><strong>特点：逐渐形成了多层次因特网服务提供者 ISP (Internet Service Provider) 结构的因特网</strong></p>
+<ol>
+<li>1993年开始，由美国政府资助的 NSFNET逐渐被若干个商用的 ISP 网络所代替。 </li>
+<li>1994 年开始创建了 4 个网络接入点 NAP (Network Access Point)，分别由 4 个电信公司经营。</li>
+<li>从 1994 年到现在，因特网逐渐演变成多级结构网络。</li>
+</ol>
+<h2 id="计算机网络的基本理论"><a href="#计算机网络的基本理论" class="headerlink" title="计算机网络的基本理论"></a>计算机网络的基本理论</h2><h2 id="计算机网络的网络基本技术和协议"><a href="#计算机网络的网络基本技术和协议" class="headerlink" title="计算机网络的网络基本技术和协议"></a>计算机网络的网络基本技术和协议</h2><h2 id="网络设备的基本操作"><a href="#网络设备的基本操作" class="headerlink" title="网络设备的基本操作"></a>网络设备的基本操作</h2><h2 id="报文抓取和分析工具的使用"><a href="#报文抓取和分析工具的使用" class="headerlink" title="报文抓取和分析工具的使用"></a>报文抓取和分析工具的使用</h2></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">等什么柠檬君</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://yyyet.github.io/2020/09/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">https://yyyet.github.io/2020/09/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://yyyet.github.io" target="_blank">此间</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200818151148.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" data-lazy-src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2020/09/23/VM15.5%E5%AE%89%E8%A3%85CentOS8/"><img class="next-cover" data-lazy-src="https://testchengzzz.oss-cn-shanghai.aliyuncs.com/img/20200818144619.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CentOS</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></article></main><footer id="footer" style="background-color: transparent;" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 By 等什么柠檬君</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js', function () {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      true && mermaid.init()
+    })
+  }
+}</script><script>function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'fRJjOaevwoYLBAPQ4J5hWqhQ-gzGzoHsz',
+      appKey: 'n3c0tBRSp8fj8wepVDDO2oHO',
+      placeholder: '大人！搁这呢~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+    });
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/js/upjiang.js"></script><div class="aplayer no-destroy" data-id="5186066572" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div><script src="https://cdn.jsdelivr.net/gh/lete114/CDN/Sum/sakura.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  'meta[name=description]',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+const pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+})
+
+document.addEventListener('pjax:complete', function () {
+  refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+})
+
+document.addEventListener('pjax:send', function () {
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+  //reset font-size
+  $('body').css('font-size') !== originFontSize && $('body').css('font-size', parseFloat(originFontSize))
+})</script></div></body></html>
