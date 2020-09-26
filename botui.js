@@ -65,27 +65,27 @@ function bot_ui_ini() {
         secondpart = function () {
             botui.message.add({
                 delay: 1500,
-                content: "然后.."
+                content: "间歇性热爱编程"
             }).then(function () {
                 botui.message.add({
                     delay: 1500,
-                    content: "天气这么热冷战吗冷战吗"
+                    content: "持续性混吃等死"
                 }).then(function () {
                     botui.message.add({
                         delay: 1200,
-                        content: "冷战吗冷战吗"
+                        content: "略懂一些android、java、springboot、js、html、脚本"
                     }).then(function () {
                         botui.message.add({
                             delay: 1500,
-                            content: "我可以好几天不理你"
+                            content: "偶尔也抓抓包跑跑自动化"
                         }).then(function () {
                             botui.message.add({
                                 delay: 1500,
-                                content: "只要你敢生气"
+                                content: "目前正在选择方向"
                             }).then(function () {
                                 botui.message.add({
                                     delay: 1800,
-                                    content: "我就马上跪着道歉"
+                                    content: "正是修行时"
                                 }).then(function () {
                                     botui.action.button({
                                         delay: 1100,
@@ -150,5 +150,5 @@ function bot_ui_ini() {
                     content: "那么，相遇就是缘分，赏个赞吧 ^_^"
                 })
             })
-        } 
+        }
 }
