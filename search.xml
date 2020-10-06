@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>泰科体温自动上报</title>
-      <link href="/2020/09/28/%E4%BD%93%E6%B8%A9%E4%B8%8A%E6%8A%A5/"/>
-      <url>/2020/09/28/%E4%BD%93%E6%B8%A9%E4%B8%8A%E6%8A%A5/</url>
-      
-        <content type="html"><![CDATA[<!DOCTYPE html><html>    <head>        <meta charset="utf-8" />        <title>test</title>        <style type="text/css">            #div1{width: 200px;margin: 0 auto; text-align: center;}        </style>    </head>    <body>        <b>每日自动上报时间：（每日9点一次自动上报 下午2点一次自动上报） 食用方法：输入学号手机号姓名提交即可,数据将提交到数据库每天定时执行（以后不需要再提交,更多接口稍后放出）</b>                <b>隐私说明：由于需要提交用户手机号和学号姓名到数据库进行定时任务，对隐私敏感的建议勿使用，这里只做提交体温不做其他用途</b>        <div id="div1">         <p>泰科院自动体温上报系统</p>        <input id="xh" style="width: 180px;height:30px;" type="text" placeholder="请输入学号" />        <input id="phone" style="width: 180px;height:30px; type="text" placeholder="请输入手机号" />        <input id="name" style="width: 180px;height:30px; type="text" placeholder="姓名" />        <button  style="width: 50px;height: 30px;" onclick="upDate()">提交</button>    </div><script>function upDate(){  if(document.getElementById("phone").value.length<11||document.getElementById("name").value.length>4||document.getElementById("xh").value<10){     alert("参数非法(请检查学号、手机号、姓名)")  }else{    var httpRequest = new XMLHttpRequest();var s = 'https://shop.chengzzz.com/insertUser?phone='+document.getElementById("phone").value+'&name='+document.getElementById("name").value+'&sid='+document.getElementById("xh").value;    httpRequest.open('GET', s, true);    httpRequest.send();    httpRequest.onreadystatechange = function () {        if (httpRequest.readyState == 4 && httpRequest.status == 200) {            var json = httpRequest.responseText;            var obj = JSON.parse(json);            alert(obj.msg)        }    };  }}</script></body></html>]]></content>
-      
-      
-      <categories>
-          
-          <category> 抓包 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 抓包 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>计算机网络</title>
       <link href="/2020/09/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
       <url>/2020/09/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</url>
